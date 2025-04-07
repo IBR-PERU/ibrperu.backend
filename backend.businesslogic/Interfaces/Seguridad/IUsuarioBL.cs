@@ -11,8 +11,6 @@ namespace backend.businesslogic.Interfaces.Seguridad
     {
         Task<IList<UsuarioDTO>> getAllUsuario();
         Task<SqlRspDTO> InsUsuario(UsuarioDTO usuario);
-        Task<SqlRspDTO> UpdUsuario(UsuarioDTO usuario);
-        Task<SqlRspDTO> dltUsuario(int nIdUsuario);
-        Task<UsuarioDTO> getUserById( int nIdUsuario );
+        Task<SqlRspDTO> patchUpdUsuario(UsuarioDTO usuario);
     }
 }

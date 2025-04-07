@@ -1,10 +1,7 @@
 ﻿using backend.businesslogic.Interfaces.Seguridad;
 using backend.domain;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Mail;
-using System.Net;
 
 namespace backend.services.Controllers.Seguridad
 {
@@ -41,8 +38,9 @@ namespace backend.services.Controllers.Seguridad
             }
         }
 
+
         [HttpPost("[action]")]
-        public async Task<ActionResult<ApiResponse<SqlRspDTO>>> insUsuario([FromBody] UsuarioDTO usuario)
+        public async Task<ActionResult<ApiResponse<SqlRspDTO>>> postInsUsuario([FromBody] UsuarioDTO usuario)
         {
             ApiResponse<SqlRspDTO> response = new ApiResponse<SqlRspDTO>();
 
@@ -63,13 +61,13 @@ namespace backend.services.Controllers.Seguridad
         }
 
         [HttpPatch("[action]")]
-        public async Task<ActionResult<ApiResponse<SqlRspDTO>>> updUsuario([FromBody] UsuarioDTO usuario)
+        public async Task<ActionResult<ApiResponse<SqlRspDTO>>> patchUpdUsuario([FromBody] UsuarioDTO usuario)
         {
             ApiResponse<SqlRspDTO> response = new ApiResponse<SqlRspDTO>();
 
             try
             {
-                var result = await service.UpdUsuario(usuario);
+                var result = await service.patchUpdUsuario(usuario);
 
                 response.success = result.nCod == 0 ? false : true;
                 response.data = result;
@@ -83,46 +81,7 @@ namespace backend.services.Controllers.Seguridad
             }
         }
 
-        [HttpDelete("[action]")]
-        public async Task<ActionResult<ApiResponse<SqlRspDTO>>> dltUsuario( int nIdUsuario )
-        {
-            ApiResponse<SqlRspDTO> response = new ApiResponse<SqlRspDTO>();
 
-            try
-            {
-                var result = await service.dltUsuario(nIdUsuario);
 
-                response.success = result.nCod == 0 ? false : true;
-                response.data = result;
-                return StatusCode(200, response);
-            }
-            catch (Exception ex)
-            {
-                response.success = false;
-                response.errMsj = ex.Message;
-                return StatusCode(500, response);
-            }
-        }
-
-        [HttpGet("[action]")]
-        public async Task<ActionResult<ApiResponse<UsuarioDTO>>> getUserById( int nIdUsuario )
-        {
-            ApiResponse<UsuarioDTO> response = new ApiResponse<UsuarioDTO>();
-
-            try
-            {
-                var result = await service.getUserById(nIdUsuario);
-
-                response.success = true;
-                response.data = (UsuarioDTO)result;
-                return StatusCode(200, response);
-            }
-            catch (Exception ex)
-            {
-                response.success = false;
-                response.errMsj = ex.Message;
-                return StatusCode(500, response);
-            }
-        }      
     }
 }

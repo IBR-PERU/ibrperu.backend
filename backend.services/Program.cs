@@ -52,7 +52,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Asignacion de Interfaces/Entidades y BD Conexion
-var connectionString = builder.Configuration.GetConnectionString("cnPsql")
+var connectionString = builder.Configuration.GetConnectionString("cnDatabase")
     ?? throw new InvalidOperationException("La cadena de conexión no está configurada.");
 builder.Services.ConfigureRepositoryManager(connectionString);
 

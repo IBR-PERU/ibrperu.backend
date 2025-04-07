@@ -12,12 +12,17 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.20" />
     <PackageReference Include="QRCoder" Version="1.6.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\backend.businesslogic\backend.businesslogic.csproj" />
     <ProjectReference Include="..\backend.domain\backend.domain.csproj" />
     <ProjectReference Include="..\backend.repository\backend.repository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Images\" />
   </ItemGroup>
 
 </Project>

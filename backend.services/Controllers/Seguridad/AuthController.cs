@@ -31,6 +31,7 @@ namespace backend.services.Controllers.Seguridad
         [HttpPost("[action]")]
         public async Task<ActionResult<ApiResponse<string>>> AuthLogin([FromBody] authLoginDTO request)
         {
+
             LoginDTO rsp = await service.AuthUser(request);
 
             if (rsp.nIdUsuario > 0)
@@ -40,9 +41,9 @@ namespace backend.services.Controllers.Seguridad
 
                 claims.AddClaim(new Claim("nIdUsuario", rsp.nIdUsuario.ToString()));
                 claims.AddClaim(new Claim("sNombreCompleto", rsp.sNombreCompleto));
-                claims.AddClaim(new Claim("nIdPersona", rsp.nIdPersona.ToString()));
-                claims.AddClaim(new Claim("sUsuario", rsp.sUsuario.ToString()));
-                claims.AddClaim(new Claim("dFechaNac", rsp.dFechaNac.ToString()));
+                claims.AddClaim(new Claim("nIdTipoUsuario", rsp.nIdTipoUsuario.ToString()));
+                claims.AddClaim(new Claim("sCodigoTipoUsuario", rsp.sCodigoTipoUsuario));
+                claims.AddClaim(new Claim("nIdPerDet", rsp.nIdPerDet.ToString()));
 
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
@@ -63,7 +64,6 @@ namespace backend.services.Controllers.Seguridad
             }
         }
 
-       
 
     }
 }

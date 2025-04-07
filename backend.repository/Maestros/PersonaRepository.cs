@@ -20,7 +20,7 @@ namespace backend.repository.Maestros
         {
             int resp;
 
-            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("cnInmobisoft")))
+            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("cnDatabase")))
             {
                 DynamicParameters parameters = new();
                 string storedProcedure = string.Format("{0};{1}", "[maestros].[pa_persona]", 1);

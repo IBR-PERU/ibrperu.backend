@@ -27,19 +27,9 @@ namespace backend.businesslogic.Seguridad
             return await repository.InsUsuario(usuario);
         }
 
-        public async Task<SqlRspDTO> UpdUsuario(UsuarioDTO usuario)
+        public async Task<SqlRspDTO> patchUpdUsuario(UsuarioDTO usuario)
         {
-            return await repository.UpdUsuario(usuario);
-        }
-
-        public async Task<SqlRspDTO> dltUsuario(int nIdUsuario)
-        {
-            return await repository.dltUsuario(nIdUsuario);
-        }
-
-        public async Task<UsuarioDTO> getUserById(int nIdUsuario)
-        {
-            return await repository.getUserById(nIdUsuario);
+            return await repository.patchUpdUsuario(usuario);
         }
     }
 }

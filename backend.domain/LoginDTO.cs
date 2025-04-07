@@ -10,17 +10,10 @@ namespace backend.domain
     {
         public int nIdUsuario { get; set; }
         public string? sNombreCompleto { get; set; }
-        public int? nIdPersona { get; set; }
-        public string? sUsuario { get; set; }
+        public int? nIdTipoUsuario { get; set; }
+        public string? sCodigoTipoUsuario { get; set; }
+        public int? nIdPerDet { get; set; }
         public string? sMsj { get; set; }
-        public DateTime? dFechaNac { get; set; }
     }
 
-    public class RecoverPasswordDTO
-    {
-        public int bChangePassword { get; set; }
-        public string sCorreoUser { get; set; }
-        public string? sMsj { get; set; }
-        public int emailExist { get; set; }        
-    }
 }
