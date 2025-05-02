@@ -10,7 +10,9 @@ namespace backend.repository.Interfaces.Seguridad
     public interface IUsuarioRepository
     {
         Task<IList<UsuarioDTO>> getAllUsuario();
+        Task<IList<UsuarioDTO>> getUsuarioById(int IdUsuario);
         Task<SqlRspDTO> InsUsuario(UsuarioDTO usuario);
         Task<SqlRspDTO> patchUpdUsuario(UsuarioDTO usuario);
+        Task<SqlRspDTO> deleteUsuario(int IdUsuario);
     }
 }

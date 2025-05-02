@@ -35,20 +35,49 @@ namespace backend.repository.Seguridad
             return list.ToList();
         }
 
+        public async Task<IList<UsuarioDTO>> getUsuarioById(int IdUsuario)
+        {
+            IEnumerable<UsuarioDTO> list = new List<UsuarioDTO>();
+
+            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("cnDatabase")))
+            {
+                DynamicParameters parameters = new();
+                string storedProcedure = string.Format("{0};{1}", "[seguridad].[pa_usuario]", 2);
+                parameters.Add("IdUsuario", IdUsuario);
+
+                list = await connection.QueryAsync<UsuarioDTO>(storedProcedure, parameters, commandType: CommandType.StoredProcedure);
+            }
+            return list.ToList();
+        }
+
 
         public async Task<SqlRspDTO> InsUsuario(UsuarioDTO usuario)
         {
             SqlRspDTO resp = new SqlRspDTO();
 
-            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("cnInmobisoft")))
+            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("cnDatabase")))
             {
                 DynamicParameters parameters = new();
-                string storedProcedure = string.Format("{0};{1}", "[seguridad].[pa_usuario]", 4);
-                parameters.Add("sUsuario", usuario.sUsuario);
-                parameters.Add("sPassword", usuario.sPassword);
-                parameters.Add("bActivo", usuario.bActivo);
-                parameters.Add("nIdTipoUsuario", usuario.nIdTipoUsuario);
-                parameters.Add("nIdPerDet", usuario.nIdPerDet);
+                string storedProcedure = string.Format("{0};{1}", "[seguridad].[pa_usuario]", 3);
+                // Parámetros de Usuario
+                parameters.Add("NamesUser", usuario.NamesUser);
+                parameters.Add("Username", usuario.Username);
+                parameters.Add("Email", usuario.Email);
+                parameters.Add("Phone", usuario.Phone);
+                parameters.Add("Website", usuario.Website);
+
+                // Parámetros de Address
+                parameters.Add("Street", usuario.Street);
+                parameters.Add("Suite", usuario.Suite);
+                parameters.Add("City", usuario.City);
+                parameters.Add("Zipcode", usuario.Zipcode);
+                parameters.Add("Lat", usuario.Lat);
+                parameters.Add("Lng", usuario.Lng);
+
+                // Parámetros de Company
+                parameters.Add("CompanyNames", usuario.NamesCompany);
+                parameters.Add("CatchPhrase", usuario.CatchPhrase);
+                parameters.Add("Bs", usuario.Bs, DbType.String);
 
                 resp = await connection.QuerySingleAsync<SqlRspDTO>(storedProcedure, parameters, commandType: CommandType.StoredProcedure);
             }
@@ -60,13 +89,29 @@ namespace backend.repository.Seguridad
         {
             SqlRspDTO resp = new SqlRspDTO();
 
-            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("cnInmobisoft")))
+            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("cnDatabase")))
             {
                 DynamicParameters parameters = new();
-                string storedProcedure = string.Format("{0};{1}", "[seguridad].[pa_usuario]", 5);
-                parameters.Add("nIdUsuario", usuario.nIdUsuario);
-                parameters.Add("sPassword", usuario.sPassword);
-                parameters.Add("bActivo", usuario.bActivo);
+                string storedProcedure = string.Format("{0};{1}", "[seguridad].[pa_usuario]", 4);
+                // Parámetros de Usuario
+                parameters.Add("NamesUser", usuario.NamesUser);
+                parameters.Add("Username", usuario.Username);
+                parameters.Add("Email", usuario.Email);
+                parameters.Add("Phone", usuario.Phone);
+                parameters.Add("Website", usuario.Website);
+
+                // Parámetros de Address
+                parameters.Add("Street", usuario.Street);
+                parameters.Add("Suite", usuario.Suite);
+                parameters.Add("City", usuario.City);
+                parameters.Add("Zipcode", usuario.Zipcode);
+                parameters.Add("Lat", usuario.Lat);
+                parameters.Add("Lng", usuario.Lng);
+
+                // Parámetros de Company
+                parameters.Add("CompanyNames", usuario.NamesCompany);
+                parameters.Add("CatchPhrase", usuario.CatchPhrase);
+                parameters.Add("Bs", usuario.Bs, DbType.String);
 
                 resp = await connection.QuerySingleAsync<SqlRspDTO>(storedProcedure, parameters, commandType: CommandType.StoredProcedure);
             }
@@ -74,9 +119,23 @@ namespace backend.repository.Seguridad
             return resp;
         }
 
+        public async Task<SqlRspDTO> deleteUsuario(int IdUsuario)
+        {
+            SqlRspDTO resp = new SqlRspDTO();
 
+            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("cnDatabase")))
+            {
+                DynamicParameters parameters = new();
+                string storedProcedure = string.Format("{0};{1}", "[seguridad].[pa_usuario]", 5);
+                // Parámetros de Usuario
+                parameters.Add("IdUsuario", IdUsuario);
 
- 
+                resp = await connection.QuerySingleAsync<SqlRspDTO>(storedProcedure, parameters, commandType: CommandType.StoredProcedure);
+            }
+
+            return resp;
+        }
+
 
     }
 }

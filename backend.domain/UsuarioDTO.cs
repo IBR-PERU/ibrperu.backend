@@ -8,29 +8,27 @@ namespace backend.domain
 {
     public class UsuarioDTO
     {
-        public int? nIdUsuario { get; set; }
-        public string? sUsuario { get; set; }
-        public string? sPassword { get; set; }
-        public bool? bActivo { get; set; }
-        public int nIdTipoUsuario { get; set; }
-        public string? sTipoUsuario { get; set; }
-        public int? nIdPerDet { get; set; }
-        public string? sNombreCompleto { get; set; }
-        public int? bChangePassword { get; set; }
+        public int? IdUsuario { get; set; }
+        public string? NamesUser { get; set; }
+        public string? Username { get; set; }
+        public string? Email { get; set; }
+        public string? Phone { get; set; }
+        public string? Website { get; set; }
 
+        public int? IdAddress { get; set; }
+        public string? Street { get; set; }
+        public string? Suite { get; set; }
+        public string? City { get; set; }
+        public string? Zipcode { get; set; }
+        public decimal? Lat { get; set; }
+        public decimal? Lng { get; set; }
+
+        public int? IdCompany { get; set; }
+        public string? NamesCompany { get; set; }
+        public string? CatchPhrase { get; set; }
+        public string? Bs { get; set; }
     }
 
-    public class authLoginDTO
-    {
-        public string sUsuario { get; set; }
-        public string sPassword { get; set; }
-    }
 
-    public class recoverPasswordDTO
-    {
-        public int bChangePassword { get; set; }
-        public string sCorreoUser { get; set; }
-        public string? sMsj { get; set; }
-        public int emailExist { get; set; }
-    }
+
 }

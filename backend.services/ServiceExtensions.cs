@@ -21,18 +21,13 @@ namespace backend.services
     {
         public static void ConfigureRepositoryManager(this IServiceCollection services, string connectionString)
         {
-            // Inyectar la conexión a PostgreSQL
-            services.AddScoped<IDbConnection>(sp => new NpgsqlConnection(connectionString));
-
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
-            services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IPersonaRepository, PersonaRepository>();
         }
 
         public static void ConfigureServicesManager(this IServiceCollection services)
         {
             services.AddScoped<IUsuarioBL, UsuarioBL>();
-            services.AddScoped<IAuthBL, AuthBL>();
             services.AddScoped<IPersonaBL, PersonaBL>();
         }
     }

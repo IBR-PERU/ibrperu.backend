@@ -22,6 +22,11 @@ namespace backend.businesslogic.Seguridad
             return await repository.getAllUsuario();
         }
 
+        public async Task<IList<UsuarioDTO>> getUsuarioById(int IdUsuario)
+        {
+            return await repository.getUsuarioById(IdUsuario);
+        }
+
         public async Task<SqlRspDTO> InsUsuario(UsuarioDTO usuario)
         {
             return await repository.InsUsuario(usuario);
@@ -30,6 +35,11 @@ namespace backend.businesslogic.Seguridad
         public async Task<SqlRspDTO> patchUpdUsuario(UsuarioDTO usuario)
         {
             return await repository.patchUpdUsuario(usuario);
+        }
+
+        public async Task<SqlRspDTO> deleteUsuario(int IdUsuario)
+        {
+            return await repository.deleteUsuario(IdUsuario);
         }
     }
 }
